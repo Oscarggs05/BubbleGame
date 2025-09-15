@@ -23,12 +23,12 @@ body {
 
 #board {
   display: grid;
-  margin: 5vh auto 0 auto; /* Menos margen arriba */
+  margin: 5vh auto 5vh auto; /* Menos margen arriba */
   border: 2px solid #fff;
   background: #000;
   max-width: 90vw;
   max-height: 60vh; /* No ocupa toda la ventana */
-  width: 100%;
+  width: 40vh;
   height: auto;
   justify-content: center;
   align-items: center;
