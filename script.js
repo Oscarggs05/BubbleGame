@@ -62,9 +62,9 @@ function getCluster(r, c, color, visited) {
 
   visited.add(key);
   let cluster = [[r, c]];
-  const dirs = [[1,0], [-1,0], [0,1], [0,-1]];
+  const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
   for (let [dr, dc] of dirs) {
-    cluster = cluster.concat(getCluster(r+dr, c+dc, color, visited));
+    cluster = cluster.concat(getCluster(r + dr, c + dc, color, visited));
   }
   return cluster;
 }
@@ -97,6 +97,42 @@ function compactColumns() {
 
 function updateScore() {
   scoreElement.textContent = score;
+}
+
+function checkNoMore() {
+  for (let r = 0; r < rows; ++r) {
+    for (let c = 0; c < cols; ++c) {
+      const color = grid[r][c];
+      if (!color) return;
+      const cluster = getCluster(r, c, color, new Set());
+      if (cluster.length >= 3) {
+        return
+      }
+    }
+  }
+  //Añadir una capa negra, poner un texto en grande "Has ganado", el score, durante unos segundos y resetear con initBoard();
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = "0";
+  overlay.style.left = "0";
+  overlay.style.width = "100vw";
+  overlay.style.height = "100vh";
+  overlay.style.background = "rgba(0,0,0,0.85)";
+  overlay.style.display = "flex";
+  overlay.style.flexDirection = "column";
+  overlay.style.justifyContent = "center";
+  overlay.style.alignItems = "center";
+  overlay.style.zIndex = "9999";
+  overlay.innerHTML = `
+    <h1 style="color:#fff; font-size:3em; margin:0;">¡Has ganado!</h1>
+    <p style="color:#fff; font-size:2em;">Puntuación: ${score}</p>
+  `;
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    overlay.remove();
+    initBoard();
+  }, 2500);
 }
 
 document.getElementById("restart").addEventListener("click", initBoard);
