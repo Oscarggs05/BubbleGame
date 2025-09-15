@@ -1,5 +1,5 @@
-const rows = 10;
-const cols = 8;
+const rows = 9;
+const cols = 7;
 const colors = ["red", "blue", "green", "yellow", "purple"];
 let grid = [];
 let score = 0;
