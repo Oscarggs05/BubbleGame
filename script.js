@@ -18,6 +18,7 @@ function initBoard() {
   score = 0;
   updateScore();
   drawBoard();
+  checkNoMore();
 }
 
 function drawBoard() {
@@ -50,6 +51,7 @@ function handleClick(r, c) {
     applyGravity();
     compactColumns();
     drawBoard();
+    checkNoMore();
   }
 }
 
@@ -103,14 +105,16 @@ function checkNoMore() {
   for (let r = 0; r < rows; ++r) {
     for (let c = 0; c < cols; ++c) {
       const color = grid[r][c];
-      if (!color) return;
+      if (!color) continue; // si está vacío, saltamos
+
       const cluster = getCluster(r, c, color, new Set());
       if (cluster.length >= 3) {
-        return
+        return false; // aún hay jugadas posibles
       }
     }
   }
-  //Añadir una capa negra, poner un texto en grande "Has ganado", el score, durante unos segundos y resetear con initBoard();
+
+  // Si llegamos aquí, ya no quedan jugadas posibles
   const overlay = document.createElement("div");
   overlay.style.position = "fixed";
   overlay.style.top = "0";
@@ -127,13 +131,17 @@ function checkNoMore() {
     <h1 style="color:#fff; font-size:3em; margin:0;">¡Has ganado!</h1>
     <p style="color:#fff; font-size:2em;">Puntuación: ${score}</p>
   `;
+
   document.body.appendChild(overlay);
 
   setTimeout(() => {
     overlay.remove();
     initBoard();
   }, 2500);
+
+  return true; // no hay más jugadas
 }
+
 
 document.getElementById("restart").addEventListener("click", initBoard);
 
