@@ -4,6 +4,15 @@ const colors = ["red", "blue", "green", "yellow", "purple"];
 let grid = [];
 let score = 0;
 
+const colorImages = {
+  red: "../assets/images/oscar.jpg",
+  blue: "./assets/images/blue-bubble.jpg",
+  green: "./assets/images/green-bubble.jpg",
+  yellow: "./assets/images/yellow-bubble.jpg",
+  purple: "./assets/images/purple-bubble.jpg"
+};
+
+
 const boardElement = document.getElementById("board");
 const scoreElement = document.getElementById("score");
 
@@ -29,7 +38,10 @@ function drawBoard() {
       const cell = document.createElement("div");
       if (color) {
         cell.className = "bubble";
-        cell.style.background = color;
+        cell.style.backgroundImage = `url(${colorImages[color]})`;
+        cell.style.backgroundSize = "cover";
+        cell.style.backgroundPosition = "center";
+        cell.style.borderRadius = "50%"; // mantiene el círculo
         cell.dataset.row = r;
         cell.dataset.col = c;
         cell.addEventListener("click", () => handleClick(r, c));
