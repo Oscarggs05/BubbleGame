@@ -6,10 +6,10 @@ let score = 0;
 
 const colorImages = {
   red: "../assets/images/oscar.jpg",
-  blue: "./assets/images/blue-bubble.jpg",
-  green: "./assets/images/green-bubble.jpg",
-  yellow: "./assets/images/yellow-bubble.jpg",
-  purple: "./assets/images/purple-bubble.jpg"
+  blue: "../assets/images/abuela.jpg",
+  green: "../assets/images/abuelo.jpg",
+  yellow: "../assets/images/papi.jpg",
+  purple: "../assets/images/mami.jpg"
 };
 
 
