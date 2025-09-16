@@ -46,7 +46,7 @@ function handleClick(r, c) {
   const cluster = getCluster(r, c, color, new Set());
   if (cluster.length >= 2) {
     for (let [rr, cc] of cluster) grid[rr][cc] = null;
-    score += cluster.length * 10;
+    score += 2 ** cluster.length;
     updateScore();
     applyGravity();
     compactColumns();
