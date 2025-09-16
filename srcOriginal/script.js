@@ -128,7 +128,7 @@ function checkNoMore() {
   overlay.style.alignItems = "center";
   overlay.style.zIndex = "9999";
   overlay.innerHTML = `
-    <h1 style="color:#fff; font-size:3em; margin:0;">¡Has ganado!</h1>
+    <h1 style="color:#fff; font-size:3em; margin:0;">¡Mami has ganado!</h1>
     <p style="color:#fff; font-size:2em;">Puntuación: ${score}</p>
   `;
 
