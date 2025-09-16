@@ -56,7 +56,7 @@ function handleClick(r, c) {
   if (!color) return;
 
   const cluster = getCluster(r, c, color, new Set());
-  if (cluster.length >= 3) {
+  if (cluster.length >= 2) {
     for (let [rr, cc] of cluster) grid[rr][cc] = null;
     score += cluster.length * 10;
     updateScore();

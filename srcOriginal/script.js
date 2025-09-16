@@ -1,5 +1,5 @@
-const rows = 9;
-const cols = 7;
+const rows = 20;
+const cols = 15;
 const colors = ["red", "blue", "green", "yellow", "purple"];
 let grid = [];
 let score = 0;
@@ -7,7 +7,7 @@ let score = 0;
 const boardElement = document.getElementById("board");
 const scoreElement = document.getElementById("score");
 
-boardElement.style.gridTemplateColumns = `repeat(${cols}, 44px)`; // 40px + margen
+boardElement.style.gridTemplateColumns = `repeat(${cols}, 25px)`; // 40px + margen
 
 function initBoard() {
   grid = Array.from({ length: rows }, () =>
@@ -44,7 +44,7 @@ function handleClick(r, c) {
   if (!color) return;
 
   const cluster = getCluster(r, c, color, new Set());
-  if (cluster.length >= 3) {
+  if (cluster.length >= 2) {
     for (let [rr, cc] of cluster) grid[rr][cc] = null;
     score += cluster.length * 10;
     updateScore();
